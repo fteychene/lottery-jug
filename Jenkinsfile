@@ -5,7 +5,7 @@ node {
 	checkout scm
 
 	stage "Checks"
-	ssh-agent(credentials: ['dokku_admin']){
-		sh "ssh -o StrictHostKeyChecking=no -l dokku@jug-montpellier.org apps"
+	sshagent (credentials: ['dokku_admin']){
+		sh "ssh -o StrictHostKeyChecking=no dokku@jug-montpellier.org apps"
 	}
 } 
