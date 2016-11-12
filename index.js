@@ -72,6 +72,7 @@ app.get('/winners', function(req, res){
         }
         return data.events[0].id
       })
+      .catch(error => errorRequest(res, 503, error))
       .then(event_id => getAttendees(event_id))
       .then(attendees => getRandomIds(attendees.length, nb_winner).map((index) => attendees[index]))
       .then(winners => {console.log("Found winners"); return winners})
