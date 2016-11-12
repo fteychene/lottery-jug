@@ -5,8 +5,10 @@
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.15.1",
+    "cors": "^2.8.1",
     "express": "^4.13.4",
     "nbrite": "^0.2.0",
+    "node-fetch": "^1.6.3",
     "request": "^2.75.0",
     "request-promise": "^4.1.1",
     "request-promise-native": "^1.0.3"
