@@ -13,7 +13,7 @@ const nbrite = new Nbrite({'token': token});
 
 const range = (start, end) => {
   let pages = []
-  for (var i = start ; i <= end; i++) {
+  for (var i = start ; i < end; i++) {
      pages.push(i);
   }
   return pages
@@ -22,8 +22,11 @@ const range = (start, end) => {
 const get = (path) => fetch(path).then(payload => payload.json())
 
 const getRandomIds = (max, numbers) => {
+  if (numbers >= max) {
+    return range(0, max)
+  }
   console.log(`Generating ${numbers} random numbers for ${max}`)
-  let results = range(0, numbers - 1).reduce((acc, _) => {
+  return range(0, numbers).reduce((acc, _) => {
       let index
       do {
         index =  Math.floor(Math.random() * max)
@@ -31,8 +34,7 @@ const getRandomIds = (max, numbers) => {
       acc.push(index)
       return acc
     }, [])
-    return results
-  }
+}
 
 const getAttendees = (event_id) => {
     return get(`https://www.eventbriteapi.com/v3/events/${event_id}/attendees/?token=${token}`)
