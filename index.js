@@ -71,7 +71,7 @@ app.get('/winners', function(req, res){
         return data.events[0].id
       })
       .then(event_id => getAttendees(event_id))
-      .then(attendees => getRandomIds(attendees.length, 4).map((index) => attendees[index]))
+      .then(attendees => getRandomIds(attendees.length, nb_winner).map((index) => attendees[index]))
       .then(winners => {console.log("Found winners"); return winners})
       .then(winners => winners.map(({profile: {first_name: first_name, last_name: last_name}}) => { return {'Winner': `${first_name} ${last_name}`}}))
       .then(winners => res.json(winners))
